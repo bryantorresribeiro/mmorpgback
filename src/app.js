@@ -1,5 +1,6 @@
 const express = require('express');
-const router = require("./routers/script.js")
+const gamer = require("./routers/gamer.js")
+const chat = require("./routers/chat.js")
 const cors = require('cors')
 const app = express()
 const { config } = require('dotenv')
@@ -7,6 +8,7 @@ const { config } = require('dotenv')
 config()
 app.use(express.json())
 app.use(cors())
-app.use("/", router)
+app.use("/gamer", gamer)
+app.use("/chat", chat)
 
 module.exports = app

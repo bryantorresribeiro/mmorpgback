@@ -1,9 +1,8 @@
-const { json } = require('express/lib/response')
 const api = require('../services/api')
 
 let dataBase = [];
 
-class Controllers{
+class Gamer{
 
     static synchronize(req, res){
         return res.status(200).json(dataBase);
@@ -17,11 +16,10 @@ class Controllers{
 
     static create(req, res){
        const {name} = req.body;
-       const x = Math.random(1) * (500 - 1) + 1;
-       const y = Math.random(1) * (500 - 1) + 1;
-       const ramdomX = x.toFixed();
-       const ramdomY = y.toFixed();
-       dataBase.push({name, x: ramdomX, y: ramdomY}) 
+       if(dataBase.includes(name)){
+           return res.status(400).send("tudo errado!")
+       }
+       dataBase.push({name, x: 255, y: -12}) 
        return res.status(201).send("tudo certin!");
     }
 
@@ -35,5 +33,5 @@ class Controllers{
     }
 
 }
-module.exports = Controllers;
+module.exports = Gamer;
 
